@@ -1,0 +1,43 @@
+# Watching
+
+Watching media is a great way to immerse and learn. Find a way to download anime and Japanese subtitles.
+
+## mpv
+
+My video player of choice is mpv. I use it for all videos, not just for learning. I use uosc for the interface to make it a little easier to use.
+
+## mpvacious 
+[mpvacious](https://github.com/Ajatt-Tools/mpvacious) is user script for mpv that helps with setting up a lot of useful features for mpv. It can create anki cards of subtitles with gifs/images and audio to help with recall. 
+
+I use mpvacious by adding it into my dotfiles as a submodule, that way I can stow the entire folder and have it update when I update my dotfiles. Other installation methods are in the repo page.
+
+Personally, I haven't used the sentence mining card creation (ctrl+n) of mpvacious yet, but I will when I start sentence mining instead of word mining. 
+
+### Setting up mpvacious
+
+To setup mpvacious properly, you will have to create a `subs2srs.conf` file in your `mpv/script-opts` folder. I am on Linux so this is located at `~/.config`, consult the manual for mpv if you are on other operating systems.
+
+Inside `subs2srs.conf`, you may configure the deck you want to create cards in, the notetype (model_name) and the field names you want to populate. Mine looks like [this](https://github.com/chuakid/dotfiles/blob/main/mpv/.config/mpv/script-opts/subs2srs.conf). The important parts are:
+
+```
+# Anki deck for new cards. Subdecks are supported.
+deck_name=Mining
+
+# Model names are listed in `Tools -> Manage note types` menu in Anki.
+# If you don't have a model for Japanese, get it from
+# https://tatsumoto.neocities.org/blog/setting-up-anki.html#import-an-example-mining-deck
+model_name=Lapis
+
+# Field names as they appear in the selected note type.
+# If you set `audio_field` or `image_field` empty,
+# the corresponding media file will not be created.
+sentence_field=Sentence
+# audio_field=SentenceAudio
+image_field=Picture
+```
+
+Also if you set `enable_new_note_timer=yes`, when you create a note through Yomitan while mpvacious is running, mpvacious will automatically populate the media fields with the correct media if the created note's type matches the model_name.
+
+### Using mpvacious
+
+After setting it up, using it is simple. Open a video, press `ctrl-t` to enable automatic copying of the current subtitles to your clipboard. Then, open Yomitan's search page (click on the extension icon and then press the search icon), and watch as it automatically populates the search bar. Now you can click on words you don't know for the definitions, and to add them into [Anki](./Anki) using AnkiConnect.
