@@ -26,3 +26,8 @@
 	--ifm-background-color: #11111b; /* Crust */
 	--ifm-font-color-base: #cdd6f4; /* Text */
 }
+
+h3 del {
+	text-decoration-color: #cdd6f4;
+	text-decoration-thickness: 3px;
+}
